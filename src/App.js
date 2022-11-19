@@ -12,38 +12,37 @@ function App(){
   const [clicked, setClicked] = useState(false);
 
 
-  const handleClick = (classId) => {    
+  const handleClick = (className) => {    
     if (imgIndex < 5) {
-      setSateFlipImage(classId);
+      setSateFlipImage(className);
       setImgIndex(imgIndex + 1);
-    } else if (imgIndex === 5) {  
-      setStateEndMsg(classId);   
-      setClicked(true);   
-    }    
-  };
+    } else  {        
+      setClicked(true);         
+      setStateEndMsg(className);   
+    }        
+  };  
 
-  const setSateFlipImage = (classId) => {   
+  const setSateFlipImage = (className) => {     
     setImgIndex(imgIndex + 1);
-    if (classId === "yes") {
+    if (className === "yes") {    
       setYes(yes + 1);
-    } else if (classId === "no") {
+    } else if (className === "no") {    
       setNo(no + 1);
     } 
   };
 
-  const setStateEndMsg = (classId) => {        
-    if (classId === "yes") {
+  const setStateEndMsg = (className) => {        
+    if (className === "yes") {
       setYes(yes + 1);
-    } else if (classId === "no") {
+    } else if (className === "no") {
       setNo(no + 1);
-    }    
-    if(yes > no){
+    }
+    if ((yes === 2 && className === "yes") || yes > no) {
       setMsg("You are a true football fan!");
     }
-    else {
+    else if ((no === 2 && className === "no") || no > yes) {
       setMsg("You are not a true football fan!");
-    }
-
+    }    
   };
 
   return (
@@ -54,17 +53,17 @@ function App(){
       </div>
         <Picture index={imgIndex} />    
       <div className="yesNoBtns">
-      <CustomButton
-          handleClick={handleClick}
-          disabled={clicked}          
+      <CustomButton             
           text="❌"
           className="no"
-        />
-        <CustomButton
           handleClick={handleClick}
-          disabled={clicked}          
+          disabled={clicked}   
+        />
+        <CustomButton       
           text="✔"
-          className="yes"
+          className="yes"          
+          handleClick={handleClick}
+          disabled={clicked}   
         />
         </div>
         {clicked && <div className="finalMsg">{msg}</div>}
