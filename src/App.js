@@ -13,7 +13,7 @@ function App(){
 
 
   const handleClick = (className) => {    
-    if (imgIndex < 5) {
+    if (imgIndex < 11) {
       setSateFlipImage(className);
       setImgIndex(imgIndex + 1);
     } else  {        
@@ -37,10 +37,10 @@ function App(){
     } else if (className === "no") {
       setNo(no + 1);
     }
-    if ((yes === 2 && className === "yes") || yes > no) {
+    if ((yes === 5 && className === "yes") || yes > no) {
       setMsg("You are a true football fan!");
     }
-    else if ((no === 2 && className === "no") || no > yes) {
+    else if ((no === 5 && className === "no") || no > yes) {
       setMsg("You are not a true football fan!");
     }    
   };
